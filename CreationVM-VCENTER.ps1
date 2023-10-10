@@ -50,7 +50,8 @@ $session = New-PSSession -ComputerName $newIP -Credential $localCredential
 
 Invoke-Command -Session $session -ScriptBlock {
     Remove-NetIPAddress -InterfaceIndex 12 -IPAddress X.X.X.X -PrefixLength 24
-    Add-Computer -DomainName domaine.local -NewName $using:newVMName -Credential $using:domcredentials
+    ename-Computer -NewName $using:newVMName #Pour rename uniquement la machine
+    Add-Computer -DomainName domaine.local -NewName $using:newVMName -Credential $using:domcredentials #Pour rename et joindre le domaine
     shutdown.exe /r /f
 }
 Remove-PSSession -Session $session
